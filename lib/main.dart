@@ -14,7 +14,17 @@ final navigatorKey = GlobalKey<NavigatorState>();
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
+// Initialize session before app starts
+  await SessionManager.init();
 
+  // Set system UI overlay for both themes
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    statusBarColor: myprimarycolor, // your app primary color
+    statusBarIconBrightness: Brightness.light, // icons visible on your color
+    statusBarBrightness: Brightness.dark, // for iOS (light status bar background)
+    systemNavigationBarColor: myprimarycolor, // optional: same color for bottom bar
+    systemNavigationBarIconBrightness: Brightness.light,
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -50,15 +60,7 @@ class MyApp extends StatelessWidget {
           secondaryContainer: Color(CommonColor.bgColor),
           onSecondary: myprimarycolor.shade400,
           onPrimary: myprimarycolor.shade50,
-          // ... other color roles (refer to Material Design 3 documentation for a complete list)
         ),
-       /* appBarTheme: AppBarTheme(
-          systemOverlayStyle: SystemUiOverlayStyle(
-              statusBarColor: myprimarycolor,
-              statusBarBrightness: Brightness.light,
-              statusBarIconBrightness: Brightness.dark
-          ),
-        ),*/
         appBarTheme: AppBarTheme(
           backgroundColor: myprimarycolor, // AppBar color
           systemOverlayStyle: SystemUiOverlayStyle(
@@ -141,13 +143,6 @@ class MyApp extends StatelessWidget {
       ),
       darkTheme: ThemeData(
         useMaterial3: false,
-        /*appBarTheme: const AppBarTheme(
-          systemOverlayStyle: SystemUiOverlayStyle(
-              statusBarColor: Color(0xFF14222b),
-              statusBarBrightness: Brightness.dark,
-              statusBarIconBrightness: Brightness.light
-          ),
-        ),*/
         appBarTheme: AppBarTheme(
           backgroundColor: Color(CommonColor.darkBgColor), // AppBar color
           systemOverlayStyle: SystemUiOverlayStyle(
@@ -174,7 +169,6 @@ class MyApp extends StatelessWidget {
           secondaryContainer: Color(CommonColor.bgNightColor),
           onSecondary: Color(CommonColor.black54),
           onPrimary: Colors.black,
-          // ... other color roles (refer to Material Design 3 documentation for a complete list)
         ),
         tabBarTheme: const TabBarThemeData(
           indicatorColor: Color(0XFFd2828d),

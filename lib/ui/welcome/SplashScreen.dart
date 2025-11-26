@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:aitutorlab/theme/mythemcolor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -8,6 +9,7 @@ import 'package:get/get_core/src/get_main.dart';
 import '../../session/SessionManager.dart';
 import '../../utils/AppBars.dart';
 import '../home/Dashboard.dart';
+import 'InfoPortfolioPage.dart';
 
 
 class SplashScreen extends StatefulWidget {
@@ -25,7 +27,13 @@ class InitState extends State<SplashScreen> with SingleTickerProviderStateMixin 
 
     super.initState();
     // Provider.of<HomeController>(context, listen: false).changeThemeNotify();
+   /* final isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
 
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: myprimarycolor,
+      statusBarIconBrightness: isDark ? Brightness.light : Brightness.dark,
+      statusBarBrightness: isDark ? Brightness.dark : Brightness.light,
+    ));*/
 
     _controller = AnimationController(
       duration: Duration(milliseconds: 1500),
@@ -44,7 +52,7 @@ class InitState extends State<SplashScreen> with SingleTickerProviderStateMixin 
       if(SessionManager.isLogin()!){
         Get.offAll(() => Dashboard(), transition: Transition.rightToLeft, duration: Duration(milliseconds: 600));
       }else{
-        Get.offAll(() => Dashboard(), transition: Transition.rightToLeft, duration: Duration(milliseconds: 600));
+        Get.offAll(() => InfoPortfolioPage(), transition: Transition.rightToLeft, duration: Duration(milliseconds: 600));
 
         // Get.offAll(() => LoginPage(), transition: Transition.rightToLeft, duration: Duration(milliseconds: 600));
       }

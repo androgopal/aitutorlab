@@ -6,6 +6,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
@@ -275,6 +276,40 @@ Widget setCachedImage(String imgUrl, double myHeight, double myWidth, double img
             //image size fill
             image: imageProvider,
             fit: BoxFit.cover,
+          ),
+        ),
+      ),
+      placeholder: (context, url) => Container(
+        height: myHeight,
+        width: myWidth,
+        alignment: Alignment.center,
+        child: apiLoader(),
+      ),
+      errorWidget: (context, url, error) => Container(
+        height: myHeight,
+        width: myWidth,
+        child: Image.asset(
+          "assets/images/logo.png",
+          fit: BoxFit.fill,
+        ),
+      ),
+    ),
+  );
+}
+
+Widget setCachedImageOt(String imgUrl, double myHeight, double myWidth, double imgRadius) {
+  return ClipRRect(
+    borderRadius: BorderRadius.circular(imgRadius),
+    child: CachedNetworkImage(
+      imageUrl: imgUrl ?? 'https://www.google.com.au/image_url.png',
+      imageBuilder: (context, imageProvider) => Container(
+        height: myHeight,
+        width: myWidth,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            //image size fill
+            image: imageProvider,
+            fit: BoxFit.fitWidth,
           ),
         ),
       ),
@@ -874,6 +909,19 @@ bool areDatesEqual(String date, String inTime, String outTime) {
 SnackbarController showSnackbar(String title, String message){
   return Get.snackbar(title, message, backgroundColor: myprimarycolor, colorText: Colors.white);
 }
+
+Future<bool?> showToast(String msg){
+  return Fluttertoast.showToast(
+      msg: msg,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.BOTTOM,
+      timeInSecForIosWeb: 1,
+      backgroundColor: Colors.black54,
+      textColor: Colors.white,
+      fontSize: 14.0
+  );
+}
+
 SnackbarController showGreenSnackbar(String title, String message){
   return Get.snackbar(title, message, backgroundColor: Colors.green, colorText: Colors.white);
 }

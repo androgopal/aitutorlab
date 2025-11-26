@@ -73,7 +73,7 @@ class DashboardState extends State<Dashboard> {
               ),
             ],
               border: Border(
-                  top:BorderSide(color: myprimarycolor, width: 2)
+                  top:BorderSide(color: myprimarycolorAccent, width: 2)
               )
           ),
           child: ClipRRect(

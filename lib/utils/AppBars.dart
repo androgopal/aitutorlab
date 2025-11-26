@@ -68,13 +68,20 @@ AppBar myStatusBarNew(BuildContext context) {
 AppBar myStatusBar(BuildContext context){
   final bool isDarkTheme = Theme.of(context).brightness == Brightness.dark;
   return AppBar(
-    backgroundColor: isDarkTheme ? Color(CommonColor.darkBgColor) : Colors.white,
+    systemOverlayStyle: SystemUiOverlayStyle(
+        statusBarColor:  isDarkTheme ? myprimarycolor.shade200 : myprimarycolor.shade200,
+        // statusBarIconBrightness : isDarkTheme ? Brightness.light : Brightness.light,
+        statusBarIconBrightness: Theme.of(context).brightness == Brightness.dark
+          ? Brightness.light // Light icons for dark theme
+          : Brightness.light, // Dark icons for light theme
+    ),
+   /* backgroundColor: isDarkTheme ? Color(CommonColor.darkBgColor) : Colors.white,
     systemOverlayStyle: SystemUiOverlayStyle(
       statusBarColor:  isDarkTheme ? Color(CommonColor.darkBgColor) : Colors.white,
       statusBarIconBrightness: Theme.of(context).brightness == Brightness.dark
           ? Brightness.light // Light icons for dark theme
           : Brightness.dark, // Dark icons for light theme
-    ),
+    ),*/
     toolbarHeight: 0,
     elevation: 0,
   );

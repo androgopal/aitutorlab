@@ -17,50 +17,6 @@ class HeaderSection extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            /*Container(
-              decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.1),
-                borderRadius: BorderRadius.circular(20),
-              ),
-              padding: const EdgeInsets.all(16),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text("60% Discount",
-                            style: TextStyle(
-                                color: CommonColor.white,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold)),
-                        const Text(
-                          "June 15 - August 29",
-                          style: TextStyle(color: Colors.white70, fontSize: 14),
-                        ),
-                        const SizedBox(height: 10),
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: CommonColor.white,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30)),
-                            padding:
-                            const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-                          ),
-                          onPressed: () {},
-                          child: const Text("Enroll Now",
-                              style: TextStyle(color: Colors.black)),
-                        )
-                      ],
-                    ),
-                  ),
-                  Image.network(
-                    'https://cdn-icons-png.flaticon.com/512/219/219969.png',
-                    height: 90,
-                  )
-                ],
-              ),
-            ),*/
             sliderView(context)
           ],
         ),
