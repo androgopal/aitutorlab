@@ -10,6 +10,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../Constant.dart';
 import '../../utils/YoutubePopupPlayer.dart';
+import '../login/LoginPage.dart';
 
 class InfoPortfolioPage extends StatefulWidget {
   @override
@@ -280,7 +281,7 @@ class _InfoPortfolioPageState extends State<InfoPortfolioPage> {
               Expanded(
                 child: _glassButton("Get Started", Colors.white, primary, () {
                   Get.to(
-                        () => Dashboard(),
+                        () => LoginPage(),
                     transition: Transition.rightToLeft,
                     duration: Duration(milliseconds: 600),
                   );

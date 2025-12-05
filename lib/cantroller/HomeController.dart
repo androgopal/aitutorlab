@@ -33,9 +33,45 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    getHomeData();
     _initPackageInfo();
     loadStaticData(); // load dummy data
     getHomeApiData();
+  }
+
+
+  RxList upcommingSessions = [].obs;
+  RxList featuredTools = [].obs;
+  RxList featuredSessions = [].obs;
+  RxList sliderData = [].obs;
+  var imgBaseUrl = "".obs;
+  var toolImgLink = "".obs;
+  var sliderImgLink = "".obs;
+  Future<void> getHomeData() async {
+    isLoading.value = true;
+    try {
+      final response = await _apiService.getRequest(
+          Constant.DASHBOARDDATAAPI
+      );
+      debugPrint("registerResponse: $response");
+      if(response["status"] == "success"){
+        imgBaseUrl.value = response["categoryImgLink"];
+        toolImgLink.value = response["toolImgLink"];
+        sliderImgLink.value = response["sliderImgLink"];
+        upcommingSessions.value = response["upcommingSessions"];
+        featuredSessions.value = response["featuredSessions"];
+        featuredTools.value = response["featuredTools"];
+        sliderData.value = response["sliderData"];
+        print("dhdfjkf ${upcommingSessions.length}");
+      }else{
+        showToast(response["message"]);
+      }
+    } catch (error) {
+      // ERROR handling from your ApiService
+      debugPrint("Login Failed: ${error.toString()}");
+    } finally {
+      isLoading.value = false;
+    }
   }
 
   Future<void> _initPackageInfo() async {
@@ -163,6 +199,11 @@ class HomeController extends GetxController {
       isLoading(false);
     });
   }
+
+
+
+
+
 }
 
 // -------------------

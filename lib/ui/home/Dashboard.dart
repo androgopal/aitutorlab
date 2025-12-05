@@ -108,7 +108,7 @@ class DashboardState extends State<Dashboard> {
                     height: 20, width: 20, color: Theme.of(context).hintColor,),
                 activeIcon: Image.asset("assets/images/ic_book.png",
                     height: 22, width: 22, color:  myprimarycolor),
-                label: "Tab 2"),
+                label: "Sessions"),
             BottomNavigationBarItem(
                 icon: Image.asset("assets/images/testseries.png",
                     height: 20, width: 20, color: Theme.of(context).hintColor,),
